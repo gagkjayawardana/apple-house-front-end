@@ -7,8 +7,14 @@ import { LoginFormValues } from './loginInterfaces';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+    const navigate = useNavigate();
+
+    const navigateToRegister = () => {
+        navigate('/register');
+    };
     const initialValues = {
         email: '',
         password: '',
@@ -76,7 +82,13 @@ function LoginPage() {
                         </Form>
                     </Formik>
                 </div>
-                <Button sx={{ marginTop: '20px', textTransform: 'none' }} variant="text">Register</Button>
+                <Button
+                    sx={{ marginTop: '20px', textTransform: 'none' }}
+                    variant="text"
+                    onClick={navigateToRegister}
+                >
+                    Register
+                </Button>
             </div>
         </div>
     );
