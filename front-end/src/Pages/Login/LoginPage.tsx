@@ -27,7 +27,9 @@ function LoginPage() {
         const email = e.email;
         const password = e.password;
 
-        console.log('Email', email, 'password', password);
+        if (email && password) {
+            navigate('/home')
+        }
     };
     return (
         <div className="login_page">
@@ -63,6 +65,7 @@ function LoginPage() {
                                 name="password"
                                 sx={{ marginTop: '35px' }}
                                 label="Password"
+                                type="password"
                                 variant="filled"
                                 helperText={
                                     <ErrorMessage
