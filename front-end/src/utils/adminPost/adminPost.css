@@ -1,0 +1,20 @@
+.admin_post_container {
+  width: 30%;
+  min-width: 375px;
+  min-height: 200px;
+  height: fit-content;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.admin_post_status {
+  margin-top: 20px;
+}
+.admin_post_status_buttons {
+  display: flex;
+}
+.post_feedbacks {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+}
