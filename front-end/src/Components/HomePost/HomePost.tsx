@@ -3,8 +3,13 @@ import '../../utils/homePost/homePost.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { HomePostType } from './homePostType';
+import { useNavigate } from 'react-router-dom';
 
 function HomePost(postData: HomePostType) {
+    const navigate = useNavigate();
+    const navigateToComments = () => {
+        navigate(`/comments/${postData.postId}`);
+    };
     return (
         <div className="home_post_container">
             <Typography variant="h5" gutterBottom>
@@ -19,6 +24,7 @@ function HomePost(postData: HomePostType) {
                     '&:hover': { backgroundColor: '#66ffff' },
                 }}
                 variant="text"
+                onClick={navigateToComments}
             >
                 Comment
             </Button>

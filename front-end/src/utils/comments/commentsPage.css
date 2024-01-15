@@ -1,0 +1,49 @@
+.comments_page {
+  width: 100%;
+  min-height: 100vh;
+  height: fit fit-content;
+  background-image: linear-gradient(to bottom right, #000099, #66ffff);
+  padding: 50px 50px 50px 50px;
+}
+.comments_container {
+  width: 100%;
+  min-height: 400px;
+  height: fit-content;
+  display: flex;
+  padding: 30px 20px 20px 20px;
+}
+.comment_post {
+  width: 50%;
+  min-height: 400px;
+  height: fit-content;
+}
+.comment_forum {
+  width: 50%;
+  min-height: 400px;
+  height: fit-content;
+}
+.comment_post_content {
+  width: 30%;
+  min-width: 375px;
+  min-height: 150px;
+  height: fit-content;
+  background-color: #ffffff;
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
+}
+.add_comment {
+  width: 80%;
+  height: fit-content;
+  background-color: #ffffff;
+  padding: 20px 20px 20px 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.comments {
+  width: 80%;
+  height: fit-content;
+  background-color: #ffffff;
+  padding: 5px 10px 5px 10px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
