@@ -2,8 +2,17 @@ import React from 'react';
 import '../../utils/navigationBar/navigationBar.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function NavigationBar() {
+    const navigate = useNavigate();
+    const navigateToHome = () => {
+        navigate('/home');
+    }
+    const navigatetoUser = () => {
+        const userName = 'User1'; //temporarily added
+        navigate(`/user/${userName}`)
+    }
     return (
         <div className="navigation_bar">
             <Typography sx={{ color: '#ffffff' }} variant="h3" gutterBottom>
@@ -17,6 +26,7 @@ function NavigationBar() {
                             textTransform: 'none',
                             '&:hover': { backgroundColor: '#66ffff' },
                         }}
+                        onClick={navigateToHome}
                         variant="text"
                     >
                         Home
@@ -28,6 +38,7 @@ function NavigationBar() {
                             textTransform: 'none',
                             '&:hover': { backgroundColor: '#66ffff' },
                         }}
+                        onClick={navigatetoUser}
                         variant="text"
                     >
                         User

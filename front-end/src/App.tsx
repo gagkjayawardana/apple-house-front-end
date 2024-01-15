@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import RegisterPage from './Pages/Register/RegisterPage';
 import HomePage from './Pages/Home/HomePage';
 import CommentsPage from './Pages/Comments/CommentsPage';
+import UserPage from './Pages/User/UserPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path='/register' element={<RegisterPage />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/comments/:postId' element={<CommentsPage />} />
+            <Route path='/user/:userName' element={<UserPage />} />
           </Routes>
         </BrowserRouter>
       </div>
