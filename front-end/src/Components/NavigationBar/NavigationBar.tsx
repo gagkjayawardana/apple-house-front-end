@@ -8,11 +8,14 @@ function NavigationBar() {
     const navigate = useNavigate();
     const navigateToHome = () => {
         navigate('/home');
-    }
+    };
     const navigatetoUser = () => {
         const userName = 'User1'; //temporarily added
-        navigate(`/user/${userName}`)
-    }
+        navigate(`/user/${userName}`);
+    };
+    const navigateToAdmin = () => {
+        navigate('/admin');
+    };
     return (
         <div className="navigation_bar">
             <Typography sx={{ color: '#ffffff' }} variant="h3" gutterBottom>
@@ -50,6 +53,7 @@ function NavigationBar() {
                             textTransform: 'none',
                             '&:hover': { backgroundColor: '#66ffff' },
                         }}
+                        onClick={navigateToAdmin}
                         variant="text"
                     >
                         Admin

@@ -6,6 +6,7 @@ import RegisterPage from './Pages/Register/RegisterPage';
 import HomePage from './Pages/Home/HomePage';
 import CommentsPage from './Pages/Comments/CommentsPage';
 import UserPage from './Pages/User/UserPage';
+import AdminPage from './Pages/Admin/AdminPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/home' element={<HomePage />} />
             <Route path='/comments/:postId' element={<CommentsPage />} />
             <Route path='/user/:userName' element={<UserPage />} />
+            <Route path='/admin' element={<AdminPage />} />
           </Routes>
         </BrowserRouter>
       </div>
