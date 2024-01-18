@@ -3,18 +3,27 @@ import '../../utils/navigationBar/navigationBar.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUserAction, selectUser } from '../../redux/user/userSlice';
 
 function NavigationBar() {
+    const dispsatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector(selectUser);
     const navigateToHome = () => {
         navigate('/home');
     };
     const navigatetoUser = () => {
-        const userName = 'User1'; //temporarily added
-        navigate(`/user/${userName}`);
+        if (user) {
+            const userName = user.userName;
+            navigate(`/user/${userName}`);
+        }
     };
     const navigateToAdmin = () => {
         navigate('/admin');
+    };
+    const logoutFunction = () => {
+        dispsatch(logoutUserAction({ navigate }));
     };
     return (
         <div className="navigation_bar">
@@ -34,30 +43,35 @@ function NavigationBar() {
                     >
                         Home
                     </Button>
-                    <Button
-                        sx={{
-                            color: '#ffffff',
-                            marginLeft: '20px',
-                            textTransform: 'none',
-                            '&:hover': { backgroundColor: '#66ffff' },
-                        }}
-                        onClick={navigatetoUser}
-                        variant="text"
-                    >
-                        User
-                    </Button>
-                    <Button
-                        sx={{
-                            color: '#ffffff',
-                            marginLeft: '20px',
-                            textTransform: 'none',
-                            '&:hover': { backgroundColor: '#66ffff' },
-                        }}
-                        onClick={navigateToAdmin}
-                        variant="text"
-                    >
-                        Admin
-                    </Button>
+                    {user.role === 'User'}
+                    {
+                        <Button
+                            sx={{
+                                color: '#ffffff',
+                                marginLeft: '20px',
+                                textTransform: 'none',
+                                '&:hover': { backgroundColor: '#66ffff' },
+                            }}
+                            onClick={navigatetoUser}
+                            variant="text"
+                        >
+                            User
+                        </Button>
+                    }
+                    {user.role === 'Admin' && (
+                        <Button
+                            sx={{
+                                color: '#ffffff',
+                                marginLeft: '20px',
+                                textTransform: 'none',
+                                '&:hover': { backgroundColor: '#66ffff' },
+                            }}
+                            onClick={navigateToAdmin}
+                            variant="text"
+                        >
+                            Admin
+                        </Button>
+                    )}
                 </div>
                 <Button
                     sx={{
@@ -65,6 +79,7 @@ function NavigationBar() {
                         textTransform: 'none',
                         '&:hover': { backgroundColor: '#66ffff' },
                     }}
+                    onClick={logoutFunction}
                     variant="contained"
                 >
                     Sign Out
