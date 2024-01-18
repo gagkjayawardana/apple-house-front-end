@@ -8,9 +8,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { RegisterType } from './registerInterFaces';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { registerUserAction } from '../../redux/user/userSlice';
 
 function RegisterPage() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const navigateToLogin = () => {
         navigate('/')
@@ -40,7 +43,7 @@ function RegisterPage() {
         const confirmPassword = e.confirmPassword;
 
         if (password === confirmPassword) {
-            console.log('Name', userName, 'Email', email);
+            dispatch(registerUserAction({ userName, email, password, navigate }))
         }
     };
     return (

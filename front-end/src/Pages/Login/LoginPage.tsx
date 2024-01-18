@@ -8,9 +8,12 @@ import { LoginFormValues } from './loginInterfaces';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUserAction } from '../../redux/user/userSlice';
 
 function LoginPage() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const navigateToRegister = () => {
         navigate('/register');
@@ -28,7 +31,7 @@ function LoginPage() {
         const password = e.password;
 
         if (email && password) {
-            navigate('/home')
+            dispatch(loginUserAction({ email, password, navigate }))
         }
     };
     return (
