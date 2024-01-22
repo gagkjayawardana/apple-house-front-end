@@ -1,25 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../utils/user/userPage.css';
 import NavigationBar from '../../Components/NavigationBar/NavigationBar';
 import CreatePost from '../../Components/CreatePost/CreatePost';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Data } from '../../data/postData';
 import UserPost from '../../Components/UserPost/UserPost';
-import { useParams } from 'react-router';
 import { UserPostType } from '../../Components/UserPost/userPostType';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostAction, selectPost } from '../../redux/post/postSlice';
+import { selectUser } from '../../redux/user/userSlice';
 
 function UserPage() {
-    const { userName } = useParams();
-    const userData = Data.filter((item) => item.userName === userName);
+    const dispatch = useDispatch();
+    const posts = useSelector(selectPost);
+    const user = useSelector(selectUser);
+    const userName = user.userName;
+
+    let userData: UserPostType[] = [];
+
+    useEffect(() => {
+        dispatch(getPostAction());
+    }, [dispatch]);
+
+    if (Array.isArray(posts)) {
+        userData = posts.filter((item: UserPostType) => item.userName === userName);
+    }
 
     const [displayData, setDisplayData] = useState<Array<UserPostType>>(userData);
+
     const displayAllPosts = () => {
         setDisplayData(userData);
     };
+    useEffect(() => {
+        displayAllPosts();
+    }, [posts]);
+
     const displayApprovedPosts = () => {
         const approvedData = userData.filter(
-            (item) => item.postStatus === 'Approved',
+            (item: UserPostType) => item.postStatus === 'Approved',
         );
         if (approvedData) {
             setDisplayData(approvedData);
@@ -27,7 +45,7 @@ function UserPage() {
     };
     const displayPendingPosts = () => {
         const pendingData = userData.filter(
-            (item) => item.postStatus === 'Pending',
+            (item: UserPostType) => item.postStatus === 'Pending',
         );
         if (pendingData) {
             setDisplayData(pendingData);
@@ -35,7 +53,7 @@ function UserPage() {
     };
     const displayRejectedPosts = () => {
         const rejectedData = userData.filter(
-            (item) => item.postStatus === 'Rejected',
+            (item: UserPostType) => item.postStatus === 'Rejected',
         );
         if (rejectedData) {
             setDisplayData(rejectedData);
@@ -99,7 +117,7 @@ function UserPage() {
                     </Button>
                 </div>
                 <div className="post_of_user">
-                    {displayData.map((item: UserPostType, index: number) => (
+                    {displayData?.map((item: UserPostType, index: number) => (
                         <UserPost
                             key={`userPost-${index}`}
                             postId={item.postId}

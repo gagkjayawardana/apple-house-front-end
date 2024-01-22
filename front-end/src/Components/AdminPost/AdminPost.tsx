@@ -4,8 +4,24 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { AdminPostType } from './adminPostType';
 import TextField from '@mui/material/TextField';
+import { useDispatch } from 'react-redux';
+import {
+    addFeedbackAction,
+    changeStatusAction,
+} from '../../redux/post/postSlice';
 
 function AdminPost(postData: AdminPostType) {
+    const dispatch = useDispatch();
+    const changeStatusToApproved = () => {
+        const postId = postData.postId;
+        const postStatus = 'Approved';
+        dispatch(changeStatusAction({ postId, postStatus }));
+    };
+    const changeStatusToRejected = () => {
+        const postId = postData.postId;
+        const postStatus = 'Rejected';
+        dispatch(changeStatusAction({ postId, postStatus }));
+    };
     const displayFeedbacks = () => {
         return (
             <>
@@ -37,7 +53,9 @@ function AdminPost(postData: AdminPostType) {
 
         const saveFeedback = () => {
             if (feedback) {
-                console.log('Feedbacks', feedback);
+                const postId = postData.postId;
+                const postFeedback = feedback;
+                dispatch(addFeedbackAction({ postId, postFeedback }));
             } else {
                 alert('Please add feedbacks');
             }
@@ -129,6 +147,7 @@ function AdminPost(postData: AdminPostType) {
                                     '&:hover': { backgroundColor: '#66ffff' },
                                 }}
                                 variant="contained"
+                                onClick={changeStatusToApproved}
                             >
                                 Approve
                             </Button>
@@ -140,6 +159,7 @@ function AdminPost(postData: AdminPostType) {
                                     '&:hover': { backgroundColor: '#66ffff' },
                                 }}
                                 variant="contained"
+                                onClick={changeStatusToRejected}
                             >
                                 Reject
                             </Button>

@@ -43,8 +43,7 @@ function NavigationBar() {
                     >
                         Home
                     </Button>
-                    {user.role === 'User'}
-                    {
+                    {user.role === 'user' && (
                         <Button
                             sx={{
                                 color: '#ffffff',
@@ -57,8 +56,8 @@ function NavigationBar() {
                         >
                             User
                         </Button>
-                    }
-                    {user.role === 'Admin' && (
+                    )}
+                    {user.role === 'admin' && (
                         <Button
                             sx={{
                                 color: '#ffffff',
