@@ -4,14 +4,22 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { UserPostType } from './userPostType';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { deletePostAction } from '../../redux/post/postSlice';
 
 function UserPost(postData: UserPostType) {
     const navigate = useNavigate();
     const navigateToComments = () => {
         navigate(`/comments/${postData.postId}`);
     };
+    const dispatch = useDispatch();
+    const deletePostButton = () => {
+        const postId = postData.postId;
+        dispatch(deletePostAction({ postId }));
+    };
 
     const [display, setDisplay] = useState(false);
+
     const displayFeedbacks = () => {
         const openFeedback = () => {
             setDisplay(true);
@@ -94,6 +102,7 @@ function UserPost(postData: UserPostType) {
                             '&:hover': { backgroundColor: '#66ffff' },
                         }}
                         variant="text"
+                        onClick={deletePostButton}
                     >
                         Delete
                     </Button>

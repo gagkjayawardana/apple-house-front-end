@@ -3,17 +3,24 @@ import '../../utils/createPost/createPost.css';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/user/userSlice';
+import { addPostAction } from '../../redux/post/postSlice';
 
 function CreatePost() {
     const [click, setClick] = useState(false);
     const [postQuestion, setPostQuestion] = useState('');
+
+    const dispatch = useDispatch();
+    const user = useSelector(selectUser)
 
     const handleClick = () => {
         setClick(true);
     };
     const submitQuestion = () => {
         if (postQuestion) {
-            console.log('Idea', postQuestion);
+            const userName = user.userName
+            dispatch(addPostAction({ userName, postQuestion }))
         } else {
             alert('Please enter your idea');
         }

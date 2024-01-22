@@ -9,11 +9,13 @@ import UserPage from './Pages/User/UserPage';
 import AdminPage from './Pages/Admin/AdminPage';
 import { useDispatch } from 'react-redux';
 import { refreshAction } from './redux/user/userSlice';
+import { getPostAction } from './redux/post/postSlice';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshAction());
+    dispatch(getPostAction())
   }, []);
   return (
     <>
