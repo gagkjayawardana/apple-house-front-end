@@ -12,7 +12,6 @@ import { UserPostType } from '../../Components/UserPost/userPostType';
 
 function AdminPage() {
     const posts = useSelector(selectPost);
-    console.log(posts);
     let adminData: UserPostType[] = [];
     if (Array.isArray(posts)) {
         adminData = posts.filter(

@@ -21,11 +21,18 @@ import {
   getPostAction,
   savePostAction,
 } from './postSlice';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:8080/', {
+  transports: ['websocket'],
+});
 
 function* addPostGenerator({ payload }: PayloadAction<AddPostType>): Generator {
   try {
     const response = yield call(addPostService, payload);
     if (response) {
+      const userName = payload.userName;
+      socket.emit('post_add', `New post add by ${userName}`);
       yield put(getPostAction());
     } else {
       alert('Post not added');
@@ -52,6 +59,11 @@ function* chagePostStatusGenerator({
   try {
     const response = yield call(changePostStatusService, payload);
     if (response) {
+      if (payload.postStatus === 'Approved') {
+        socket.emit('approve_post', `Your post approved`);
+      } else {
+        socket.emit('reject_post', `Your post rejected`);
+      }
       yield put(getPostAction());
     }
   } catch (err) {
