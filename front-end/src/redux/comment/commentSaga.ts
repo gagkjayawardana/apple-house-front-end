@@ -7,6 +7,11 @@ import {
   getCommentsAction,
   saveCommentAction,
 } from './commentSlice';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:8080/', {
+  transports: ['websocket'],
+});
 
 function* addCommentGenerator({
   payload,
@@ -14,6 +19,8 @@ function* addCommentGenerator({
   try {
     const response = yield call(addCommentService, payload);
     if (response) {
+      const userName = payload.commentUser;
+      socket.emit('add_comment', `New comment add by ${userName}`);
       yield put(getCommentsAction(payload.postId));
     }
   } catch (err) {

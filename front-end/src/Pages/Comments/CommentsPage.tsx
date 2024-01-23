@@ -13,6 +13,11 @@ import {
     getCommentsAction,
     selectComment,
 } from '../../redux/comment/commentSlice';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:8080/', {
+    transports: ['websocket'],
+});
 
 function CommentsPage() {
     const { postId } = useParams();
@@ -66,6 +71,23 @@ function CommentsPage() {
 
     const commentsForum = () => {
         const comments = useSelector(selectComment);
+        useEffect(() => {
+            if (Array.isArray(comments)) {
+                socket.on('connect', () => {
+                    console.log('Socket Id', socket.id);
+                });
+                socket.on('comment_added', (data) => {
+                    alert(data);
+                    dispatch(getCommentsAction(postId));
+                });
+                socket.on('connect_error', (err) => {
+                    console.log(`connect_error due to ${err.message}`);
+                });
+                return () => {
+                    socket.off();
+                };
+            }
+        }, [comments, socket]);
         return (
             <div className="comment_forum">
                 <Typography sx={{ color: '#000099' }} variant="h3" gutterBottom>
