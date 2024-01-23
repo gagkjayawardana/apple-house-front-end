@@ -67,7 +67,7 @@ export const deletePostService = async (post: DeletePostType) => {
   try {
     const postId = post.postId;
     const response = await axios.delete(
-      `http://localhost:8080/post/adeletePost/${postId}`,
+      `http://localhost:8080/post/deletePost/${postId}`,
       { withCredentials: true },
     );
     return response;
