@@ -3,4 +3,5 @@ export interface HomePostType {
   userName: string;
   postStatus: string;
   postQuestion: string;
+  createdTime: string;
 }
