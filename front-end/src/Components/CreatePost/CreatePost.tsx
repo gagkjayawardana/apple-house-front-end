@@ -21,6 +21,7 @@ function CreatePost() {
         if (postQuestion) {
             const userName = user.userName
             dispatch(addPostAction({ userName, postQuestion }))
+            setPostQuestion('')
         } else {
             alert('Please enter your idea');
         }
@@ -39,6 +40,7 @@ function CreatePost() {
                     maxRows={3}
                     onClick={handleClick}
                     onChange={(e) => setPostQuestion(e.target.value)}
+                    value={postQuestion}
                     variant="filled"
                 />
                 <Button
