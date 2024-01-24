@@ -75,9 +75,9 @@ function* chagePostStatusGenerator({
     const response = yield call(changePostStatusService, payload);
     if (response) {
       if (payload.postStatus === 'Approved') {
-        socket.emit('approve_post', `Your post approved`);
+        socket.emit('approve_post', `post approved`);
       } else {
-        socket.emit('reject_post', `Your post rejected`);
+        socket.emit('reject_post', `post rejected`);
       }
       yield put(getPostAction());
     } else {

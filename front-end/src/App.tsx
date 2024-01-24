@@ -31,12 +31,10 @@ function App() {
       (item: PostType) => item.postStatus === 'Pending',
     );
     approvedData = posts.filter(
-      (item: PostType) =>
-        item.postStatus === 'Approved' && item.userName === user.userName,
+      (item: PostType) => item.postStatus === 'Approved',
     );
     rejectedData = posts.filter(
-      (item: PostType) =>
-        item.postStatus === 'Rejected' && item.userName === user.userName,
+      (item: PostType) => item.postStatus === 'Rejected',
     );
   }
 
