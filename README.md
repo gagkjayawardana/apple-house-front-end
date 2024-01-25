@@ -18,15 +18,15 @@ To get started with the Apple House Front-End, follow these steps:
 
 1. Clone the repository:
 
-https://github.com/gagkjayawardana/apple-house-front-end.git
+   https://github.com/gagkjayawardana/apple-house-front-end.git
 
 2. Install dependencies:
 
-npm install
+   npm install
 
 3. Start the development server:
 
-npm start
+   npm start
 
 
 
