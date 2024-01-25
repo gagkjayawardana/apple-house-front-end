@@ -1,0 +1,21 @@
+.admin_page {
+  width: 100%;
+  min-height: 100vh;
+  height: fit fit-content;
+  background-image: linear-gradient(to bottom right, #000099, #66ffff);
+  padding: 50px 50px 50px 50px;
+}
+.post_component {
+  margin-top: 80px;
+}
+.post_container {
+  width: 100%;
+  height: 500px;
+  background-image: linear-gradient(to right, #3399ff, #b3ffff);
+  border-radius: 20px;
+  display: flex;
+  flex-flow: wrap;
+  overflow-y: auto;
+  padding: 20px 30px 20px 30px;
+  margin-top: 30px;
+}

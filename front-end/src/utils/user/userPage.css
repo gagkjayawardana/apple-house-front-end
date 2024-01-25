@@ -1,0 +1,26 @@
+.user_page {
+  width: 100%;
+  min-height: 100vh;
+  height: fit fit-content;
+  background-image: linear-gradient(to bottom right, #000099, #66ffff);
+  padding: 50px 50px 50px 50px;
+}
+.user_post_component {
+  width: 100%;
+  min-height: 400px;
+  height: fit-content;
+  margin-top: 40px;
+}
+.user_post_categories {
+  margin-top: 20px;
+}
+.post_of_user {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  margin-left: -20px;
+  margin-top: 30px;
+  overflow-y: auto;
+}
